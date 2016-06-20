@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		DFF091E91D163C290082FC52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF091E81D163C290082FC52 /* main.m */; };
 		DFF091EC1D163C290082FC52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF091EB1D163C290082FC52 /* AppDelegate.m */; };
-		DFF091EF1D163C290082FC52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF091EE1D163C290082FC52 /* ViewController.m */; };
 		DFF091F21D163C290082FC52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF091F01D163C290082FC52 /* Main.storyboard */; };
 		DFF091F41D163C290082FC52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF091F31D163C290082FC52 /* Assets.xcassets */; };
 		DFF091F71D163C290082FC52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF091F51D163C290082FC52 /* LaunchScreen.storyboard */; };
+		DFF092021D17B7080082FC52 /* MemeTBV.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF092011D17B7080082FC52 /* MemeTBV.m */; };
+		DFF092051D17B7210082FC52 /* MemeCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF092041D17B7210082FC52 /* MemeCollectionVC.m */; };
+		DFF092081D17B73F0082FC52 /* MemeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFF092061D17B73F0082FC52 /* MemeModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +22,15 @@
 		DFF091E81D163C290082FC52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFF091EA1D163C290082FC52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF091EB1D163C290082FC52 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DFF091ED1D163C290082FC52 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DFF091EE1D163C290082FC52 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DFF091F11D163C290082FC52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DFF091F31D163C290082FC52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFF091F61D163C290082FC52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFF091F81D163C290082FC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFF092001D17B7080082FC52 /* MemeTBV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemeTBV.h; sourceTree = "<group>"; };
+		DFF092011D17B7080082FC52 /* MemeTBV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemeTBV.m; sourceTree = "<group>"; };
+		DFF092031D17B7210082FC52 /* MemeCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemeCollectionVC.h; sourceTree = "<group>"; };
+		DFF092041D17B7210082FC52 /* MemeCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemeCollectionVC.m; sourceTree = "<group>"; };
+		DFF092071D17B73F0082FC52 /* MemeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemeModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +63,10 @@
 		DFF091E61D163C290082FC52 /* MemeMe.ObjC */ = {
 			isa = PBXGroup;
 			children = (
+				DFF091FE1D16FB3F0082FC52 /* View Controllers */,
+				DFF091FF1D16FBAF0082FC52 /* Model */,
 				DFF091EA1D163C290082FC52 /* AppDelegate.h */,
 				DFF091EB1D163C290082FC52 /* AppDelegate.m */,
-				DFF091ED1D163C290082FC52 /* ViewController.h */,
-				DFF091EE1D163C290082FC52 /* ViewController.m */,
 				DFF091F01D163C290082FC52 /* Main.storyboard */,
 				DFF091F31D163C290082FC52 /* Assets.xcassets */,
 				DFF091F51D163C290082FC52 /* LaunchScreen.storyboard */,
@@ -77,6 +82,25 @@
 				DFF091E81D163C290082FC52 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DFF091FE1D16FB3F0082FC52 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DFF092001D17B7080082FC52 /* MemeTBV.h */,
+				DFF092011D17B7080082FC52 /* MemeTBV.m */,
+				DFF092031D17B7210082FC52 /* MemeCollectionVC.h */,
+				DFF092041D17B7210082FC52 /* MemeCollectionVC.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DFF091FF1D16FBAF0082FC52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DFF092061D17B73F0082FC52 /* MemeModel.xcdatamodeld */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,8 +174,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFF091EF1D163C290082FC52 /* ViewController.m in Sources */,
 				DFF091EC1D163C290082FC52 /* AppDelegate.m in Sources */,
+				DFF092021D17B7080082FC52 /* MemeTBV.m in Sources */,
+				DFF092051D17B7210082FC52 /* MemeCollectionVC.m in Sources */,
+				DFF092081D17B73F0082FC52 /* MemeModel.xcdatamodeld in Sources */,
 				DFF091E91D163C290082FC52 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +329,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DFF092061D17B73F0082FC52 /* MemeModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DFF092071D17B73F0082FC52 /* MemeModel.xcdatamodel */,
+			);
+			currentVersion = DFF092071D17B73F0082FC52 /* MemeModel.xcdatamodel */;
+			path = MemeModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DFF091DC1D163C290082FC52 /* Project object */;
 }
