@@ -7,8 +7,11 @@
 //
 
 #import "MemeCollectionVC.h"
+#import "CoreDataController.h"
 
 @interface MemeCollectionVC ()
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -45,15 +48,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+    printf("Number of items in fetched results: %lu", [[[self fetchedResultsController] sections] count]);
+    return [[[self fetchedResultsController] sections] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -62,6 +60,28 @@ static NSString * const reuseIdentifier = @"Cell";
     // Configure the cell
     
     return cell;
+}
+
+#pragma mark - Fetched Results controller
+
+-(void)initializeFetchedResutlsController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Meme"];
+    NSSortDescriptor *topTextSort = [NSSortDescriptor sortDescriptorWithKey:@"topText" ascending:YES];
+    
+    [request setSortDescriptors:@[topTextSort]];
+    
+    NSManagedObjectContext *moc =[[CoreDataController self] managedObjectContext];
+    
+    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:nil cacheName:nil]];
+    [[self fetchedResultsController] setDelegate:self];
+    
+    NSError *error = nil;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Failed to initialize FetchedResultsController: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+    
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -94,5 +114,7 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+
 
 @end

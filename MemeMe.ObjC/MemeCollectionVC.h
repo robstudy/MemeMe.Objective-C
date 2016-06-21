@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface MemeCollectionVC : UICollectionViewController
+@interface MemeCollectionVC : UICollectionViewController<NSFetchedResultsControllerDelegate>
 
 @end

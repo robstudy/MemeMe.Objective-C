@@ -15,6 +15,9 @@
 		DFF092021D17B7080082FC52 /* MemeTBV.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF092011D17B7080082FC52 /* MemeTBV.m */; };
 		DFF092051D17B7210082FC52 /* MemeCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF092041D17B7210082FC52 /* MemeCollectionVC.m */; };
 		DFF092081D17B73F0082FC52 /* MemeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFF092061D17B73F0082FC52 /* MemeModel.xcdatamodeld */; };
+		DFF0920D1D17D5130082FC52 /* Meme+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF0920A1D17D5130082FC52 /* Meme+CoreDataProperties.m */; };
+		DFF0920E1D17D5130082FC52 /* Meme.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF0920C1D17D5130082FC52 /* Meme.m */; };
+		DFF092111D19045E0082FC52 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF092101D19045E0082FC52 /* CoreDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,12 @@
 		DFF092031D17B7210082FC52 /* MemeCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemeCollectionVC.h; sourceTree = "<group>"; };
 		DFF092041D17B7210082FC52 /* MemeCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemeCollectionVC.m; sourceTree = "<group>"; };
 		DFF092071D17B73F0082FC52 /* MemeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemeModel.xcdatamodel; sourceTree = "<group>"; };
+		DFF092091D17D5130082FC52 /* Meme+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Meme+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DFF0920A1D17D5130082FC52 /* Meme+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Meme+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DFF0920B1D17D5130082FC52 /* Meme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meme.h; sourceTree = "<group>"; };
+		DFF0920C1D17D5130082FC52 /* Meme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meme.m; sourceTree = "<group>"; };
+		DFF0920F1D19045E0082FC52 /* CoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataController.h; sourceTree = "<group>"; };
+		DFF092101D19045E0082FC52 /* CoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +108,12 @@
 			isa = PBXGroup;
 			children = (
 				DFF092061D17B73F0082FC52 /* MemeModel.xcdatamodeld */,
+				DFF092091D17D5130082FC52 /* Meme+CoreDataProperties.h */,
+				DFF0920A1D17D5130082FC52 /* Meme+CoreDataProperties.m */,
+				DFF0920B1D17D5130082FC52 /* Meme.h */,
+				DFF0920C1D17D5130082FC52 /* Meme.m */,
+				DFF0920F1D19045E0082FC52 /* CoreDataController.h */,
+				DFF092101D19045E0082FC52 /* CoreDataController.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -175,9 +190,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFF091EC1D163C290082FC52 /* AppDelegate.m in Sources */,
+				DFF0920E1D17D5130082FC52 /* Meme.m in Sources */,
+				DFF0920D1D17D5130082FC52 /* Meme+CoreDataProperties.m in Sources */,
 				DFF092021D17B7080082FC52 /* MemeTBV.m in Sources */,
 				DFF092051D17B7210082FC52 /* MemeCollectionVC.m in Sources */,
 				DFF092081D17B73F0082FC52 /* MemeModel.xcdatamodeld in Sources */,
+				DFF092111D19045E0082FC52 /* CoreDataController.m in Sources */,
 				DFF091E91D163C290082FC52 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +345,7 @@
 				DFF091FD1D163C290082FC52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
