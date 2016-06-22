@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF1D49141D1A460900C07A69 /* MemeEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1D49131D1A460900C07A69 /* MemeEditorVC.m */; };
 		DFF091E91D163C290082FC52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF091E81D163C290082FC52 /* main.m */; };
 		DFF091EC1D163C290082FC52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF091EB1D163C290082FC52 /* AppDelegate.m */; };
 		DFF091F21D163C290082FC52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF091F01D163C290082FC52 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF1D49121D1A460900C07A69 /* MemeEditorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemeEditorVC.h; sourceTree = "<group>"; };
+		DF1D49131D1A460900C07A69 /* MemeEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemeEditorVC.m; sourceTree = "<group>"; };
 		DFF091E41D163C290082FC52 /* MemeMe.ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.ObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFF091E81D163C290082FC52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFF091EA1D163C290082FC52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				DFF092011D17B7080082FC52 /* MemeTBV.m */,
 				DFF092031D17B7210082FC52 /* MemeCollectionVC.h */,
 				DFF092041D17B7210082FC52 /* MemeCollectionVC.m */,
+				DF1D49121D1A460900C07A69 /* MemeEditorVC.h */,
+				DF1D49131D1A460900C07A69 /* MemeEditorVC.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFF091EC1D163C290082FC52 /* AppDelegate.m in Sources */,
+				DF1D49141D1A460900C07A69 /* MemeEditorVC.m in Sources */,
 				DFF0920E1D17D5130082FC52 /* Meme.m in Sources */,
 				DFF0920D1D17D5130082FC52 /* Meme+CoreDataProperties.m in Sources */,
 				DFF092021D17B7080082FC52 /* MemeTBV.m in Sources */,
