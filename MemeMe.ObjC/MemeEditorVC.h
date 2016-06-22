@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MemeEditorVC : UIViewController
-
+@interface MemeEditorVC : UIViewController <UITextFieldDelegate>
+-(void)setTextFields:(UITextField *)textfield
+                     text:(NSString *)defaultText;
 @end

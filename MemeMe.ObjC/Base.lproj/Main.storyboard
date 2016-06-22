@@ -126,22 +126,34 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3kH-dX-xET">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Top Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hoX-Ot-nGx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Top Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hoX-Ot-nGx">
                                 <rect key="frame" x="20" y="72" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="afN-wv-5bR"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bottom Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Psx-wS-BnQ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bottom Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Psx-wS-BnQ">
                                 <rect key="frame" x="20" y="488" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DJr-bQ-l46"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BPn-J7-gNp" firstAttribute="top" secondItem="Psx-wS-BnQ" secondAttribute="bottom" constant="38" id="G6K-gV-Asd"/>
+                            <constraint firstItem="hoX-Ot-nGx" firstAttribute="leading" secondItem="Psx-wS-BnQ" secondAttribute="leading" id="HEI-bn-ftu"/>
                             <constraint firstItem="BPn-J7-gNp" firstAttribute="top" secondItem="3kH-dX-xET" secondAttribute="bottom" id="STb-HK-5S2"/>
+                            <constraint firstItem="hoX-Ot-nGx" firstAttribute="top" secondItem="kUl-MS-Ivl" secondAttribute="bottom" constant="8" symbolic="YES" id="UAE-nc-41p"/>
                             <constraint firstItem="3kH-dX-xET" firstAttribute="leading" secondItem="WzT-kT-KYc" secondAttribute="leadingMargin" constant="-20" id="cA3-bG-BKE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3kH-dX-xET" secondAttribute="trailing" constant="-20" id="dgr-9C-aa0"/>
+                            <constraint firstItem="hoX-Ot-nGx" firstAttribute="leading" secondItem="WzT-kT-KYc" secondAttribute="leadingMargin" id="fGy-uf-OwY"/>
+                            <constraint firstItem="hoX-Ot-nGx" firstAttribute="centerX" secondItem="3kH-dX-xET" secondAttribute="centerX" id="jbG-od-c5I"/>
+                            <constraint firstItem="hoX-Ot-nGx" firstAttribute="trailing" secondItem="Psx-wS-BnQ" secondAttribute="trailing" id="lOK-F1-eXr"/>
                             <constraint firstItem="3kH-dX-xET" firstAttribute="top" secondItem="kUl-MS-Ivl" secondAttribute="bottom" id="mCZ-K2-fh8"/>
                         </constraints>
                     </view>
@@ -156,6 +168,10 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="MtV-QG-1FT"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bottomTextField" destination="Psx-wS-BnQ" id="eKz-Fk-L76"/>
+                        <outlet property="topTextField" destination="hoX-Ot-nGx" id="LuF-Zt-gbb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAa-3Z-Wrs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
