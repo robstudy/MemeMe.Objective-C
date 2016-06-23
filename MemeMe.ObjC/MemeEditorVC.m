@@ -9,6 +9,8 @@
 #import "MemeEditorVC.h"
 
 @interface MemeEditorVC ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *memeImage;
 @property (weak, nonatomic) IBOutlet UITextField *topTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bottomTextField;
 @end
@@ -37,6 +39,26 @@
     textfield.textAlignment = NSTextAlignmentCenter;
     textfield.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     textfield.textAlignment = NSTextAlignmentCenter;
+}
+
+
+- (IBAction)pickImageFromAlbum:(id)sender {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+#pragma mark - ImagePicker Delegate Controls
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    _memeImage.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
