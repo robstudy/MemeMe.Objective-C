@@ -12,4 +12,9 @@
 
 -(void)setTextFields:(UITextField *)textfield
                      text:(NSString *)defaultText;
+-(void)keyboardWillShow:(NSNotification *)notification;
+-(void)keyboardWillHide:(NSNotification *)notification;
+-(CGFloat)getKeyboardHeight:(NSNotification *)notification;
+-(void)subscribeToKeyboardNotification;
+-(void)unsubscribeFromKeyboardNotifications;
 @end

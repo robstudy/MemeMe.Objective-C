@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -188,7 +189,10 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Meme Editor" id="SIO-3F-nWH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="MtV-QG-1FT"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="MtV-QG-1FT"/>
+                            <barButtonItem title="Save" id="3kb-pr-idf"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

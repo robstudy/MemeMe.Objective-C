@@ -24,9 +24,63 @@
     [self setTextFields:_bottomTextField text:@"BOTTOM"];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self subscribeToKeyboardNotification];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self unsubscribeFromKeyboardNotifications];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Keyboard Notifications
+
+-(void)keyboardWillShow:(NSNotification *)notification {
+    if (_bottomTextField.isFirstResponder) {
+        CGRect frame = self.view.frame;
+        frame.origin.y = -[self getKeyboardHeight:notification];
+        self.view.frame = frame;
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification {
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0.0f;
+    self.view.frame = frame;
+}
+
+-(CGFloat)getKeyboardHeight:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSValue *keyboardSize = [userInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    return keyboardSize.CGRectValue.size.height;
+}
+
+-(void)subscribeToKeyboardNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name: UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+-(void)unsubscribeFromKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 
