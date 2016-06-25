@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *memeImage;
 @property (weak, nonatomic) IBOutlet UITextField *topTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bottomTextField;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
+
 @end
 
 @implementation MemeEditorVC
@@ -22,6 +24,8 @@
     // Do any additional setup after loading the view.
     [self setTextFields:_topTextField text:@"TOP"];
     [self setTextFields:_bottomTextField text:@"BOTTOM"];
+    _cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    _memeImage.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -115,14 +119,19 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Text Field Delegates
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([string  isEqual: @"/n"]) {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
-*/
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    if ([textField.text  isEqual: @"TOP"] || [textField.text  isEqual: @"BOTTOM"]) {
+        textField.text = @"";
+    }
+}
 @end

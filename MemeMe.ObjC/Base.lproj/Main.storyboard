@@ -197,6 +197,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="Psx-wS-BnQ" id="eKz-Fk-L76"/>
+                        <outlet property="cameraButton" destination="v0v-b0-Qvf" id="zFf-r7-qCW"/>
                         <outlet property="memeImage" destination="3kH-dX-xET" id="Lwc-BN-aDT"/>
                         <outlet property="topTextField" destination="hoX-Ot-nGx" id="LuF-Zt-gbb"/>
                     </connections>
