@@ -190,15 +190,21 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Meme Editor" id="SIO-3F-nWH">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="MtV-QG-1FT"/>
+                            <barButtonItem systemItem="action" id="MtV-QG-1FT">
+                                <connections>
+                                    <action selector="shareImage:" destination="MSP-VP-y6Q" id="WXK-Aw-jlC"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Save" id="3kb-pr-idf"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="Psx-wS-BnQ" id="eKz-Fk-L76"/>
+                        <outlet property="bottomToolBar" destination="cnx-MM-Vb9" id="d40-rG-a3R"/>
                         <outlet property="cameraButton" destination="v0v-b0-Qvf" id="zFf-r7-qCW"/>
                         <outlet property="memeImage" destination="3kH-dX-xET" id="Lwc-BN-aDT"/>
+                        <outlet property="shareButton" destination="MtV-QG-1FT" id="pcH-41-XZI"/>
                         <outlet property="topTextField" destination="hoX-Ot-nGx" id="LuF-Zt-gbb"/>
                     </connections>
                 </viewController>

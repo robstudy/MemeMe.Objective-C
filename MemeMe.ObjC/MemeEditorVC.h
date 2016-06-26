@@ -10,6 +10,10 @@
 
 @interface MemeEditorVC : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+{
+    UIImage *fullMemeImage;
+}
+
 -(void)setTextFields:(UITextField *)textfield
                      text:(NSString *)defaultText;
 -(void)keyboardWillShow:(NSNotification *)notification;
@@ -17,4 +21,5 @@
 -(CGFloat)getKeyboardHeight:(NSNotification *)notification;
 -(void)subscribeToKeyboardNotification;
 -(void)unsubscribeFromKeyboardNotifications;
+-(UIImage *)generateMemeImage;
 @end

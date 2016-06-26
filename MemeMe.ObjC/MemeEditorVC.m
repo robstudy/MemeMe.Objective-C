@@ -13,7 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *memeImage;
 @property (weak, nonatomic) IBOutlet UITextField *topTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bottomTextField;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *bottomToolBar;
+
 
 @end
 
@@ -134,4 +137,44 @@
         textField.text = @"";
     }
 }
+
+#pragma mark - Share Image
+
+- (IBAction)shareImage:(id)sender {
+    fullMemeImage = [self generateMemeImage];
+    
+    NSArray *holdFullImage = [[NSArray alloc] initWithObjects:fullMemeImage, nil];
+    
+    UIActivityViewController *shareImageVC = [[UIActivityViewController alloc] initWithActivityItems:holdFullImage applicationActivities:nil];
+    
+    if ([shareImageVC respondsToSelector:@selector(@"popoverPresentationController")]) {
+        shareImageVC.popoverPresentationController.sourceView = _memeImage;
+    }
+    
+    [self presentViewController:shareImageVC animated:YES completion:nil];
+    
+}
+
+-(UIImage *)generateMemeImage {
+    //Hide Tool Bars when gernating image
+    _bottomToolBar.hidden = YES;
+    
+    //Remove First Responder From TextFields
+    [_topTextField resignFirstResponder];
+    [_bottomTextField resignFirstResponder];
+    
+    _memeImage.contentMode = UIViewContentModeScaleAspectFill;
+    
+    //Render View to an image
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [self.view drawViewHierarchyInRect:self.view.frame afterScreenUpdates:true];
+    UIImage *memeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //Unhide ToolBars
+    _bottomToolBar.hidden = NO;
+    
+    return memeImage;
+}
+
 @end
