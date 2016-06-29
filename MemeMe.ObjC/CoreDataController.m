@@ -10,6 +10,16 @@
 
 @implementation CoreDataController
 
++(id)sharedStore {
+    static CoreDataController *coreData = nil;
+    @synchronized(self) {
+        if (coreData == nil) {
+            coreData = [[CoreDataController alloc] init];
+        }
+    }
+    return coreData;
+}
+
 -(id)init
 {
     self = [super init];
@@ -42,6 +52,13 @@
         NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
         NSAssert(store != nil, @"Error initializing PSC: %@\n%@", [error localizedDescription], [error userInfo]);
     });
+}
+
+-(void)save{
+    NSError *error = nil;
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 @end

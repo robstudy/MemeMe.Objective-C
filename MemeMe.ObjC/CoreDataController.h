@@ -14,5 +14,7 @@
 @property (strong) NSManagedObjectContext *managedObjectContext;
 
 -(void)initializeCoreData;
+-(void)save;
++(id)sharedStore;
 
 @end

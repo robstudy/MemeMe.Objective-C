@@ -81,7 +81,6 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"Failed to initialize FetchedResultsController: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
-    
 }
 
 #pragma mark <UICollectionViewDelegate>

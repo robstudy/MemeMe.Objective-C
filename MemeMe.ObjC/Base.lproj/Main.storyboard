@@ -195,7 +195,11 @@
                                     <action selector="shareImage:" destination="MSP-VP-y6Q" id="WXK-Aw-jlC"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Save" id="3kb-pr-idf"/>
+                            <barButtonItem title="Save" id="3kb-pr-idf">
+                                <connections>
+                                    <action selector="save:" destination="MSP-VP-y6Q" id="qLw-ka-mQU"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

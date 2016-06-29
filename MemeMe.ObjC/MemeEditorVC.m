@@ -7,6 +7,8 @@
 //
 
 #import "MemeEditorVC.h"
+#import "CoreDataController.h"
+#import "Meme+CoreDataProperties.h"
 
 @interface MemeEditorVC ()
 
@@ -147,13 +149,28 @@
     
     UIActivityViewController *shareImageVC = [[UIActivityViewController alloc] initWithActivityItems:holdFullImage applicationActivities:nil];
     
-    if ([shareImageVC respondsToSelector:@selector(@"popoverPresentationController")]) {
+    if ([shareImageVC respondsToSelector:@selector(popoverPresentationController)]) {
         shareImageVC.popoverPresentationController.sourceView = _memeImage;
     }
     
     [self presentViewController:shareImageVC animated:YES completion:nil];
-    
 }
+
+- (IBAction)save:(id)sender {
+    
+    fullMemeImage = [self generateMemeImage];
+    NSData *data = UIImagePNGRepresentation(fullMemeImage);
+    NSData *data2 = UIImagePNGRepresentation(_memeImage.image);
+    
+    Meme *newMeme = [[Meme alloc] initWithContext:[self sharedContext]
+                                      memeTopText:_topTextField.text
+                                   memeBottomText:_bottomTextField.text
+                                        memeImage:data2
+                                memeImageWithText:data];
+
+    NSLog(@"Saved new meme %@",newMeme);
+}
+
 
 -(UIImage *)generateMemeImage {
     //Hide Tool Bars when gernating image
@@ -175,6 +192,11 @@
     _bottomToolBar.hidden = NO;
     
     return memeImage;
+}
+
+-(NSManagedObjectContext *)sharedContext {
+    CoreDataController *sharedStore = [CoreDataController sharedStore];
+    return sharedStore.managedObjectContext;
 }
 
 @end
