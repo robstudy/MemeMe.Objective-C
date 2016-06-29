@@ -22,5 +22,5 @@
 -(void)subscribeToKeyboardNotification;
 -(void)unsubscribeFromKeyboardNotifications;
 -(UIImage *)generateMemeImage;
--(NSManagedObjectContext *)sharedContext;
+
 @end

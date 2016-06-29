@@ -51,8 +51,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    printf("Number of items in fetched results: %lu", [[[self fetchedResultsController] sections] count]);
-    return [[[self fetchedResultsController] sections] count];
+    printf("Number of items in fetched results: %lu", [self.fetchedResultsController.fetchedObjects count]);
+    return [self.fetchedResultsController.fetchedObjects count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

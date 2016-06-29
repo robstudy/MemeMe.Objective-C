@@ -167,8 +167,10 @@
                                    memeBottomText:_bottomTextField.text
                                         memeImage:data2
                                 memeImageWithText:data];
-
+    
     NSLog(@"Saved new meme %@",newMeme);
+    
+    [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 
