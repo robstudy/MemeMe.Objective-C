@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF1D49141D1A460900C07A69 /* MemeEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1D49131D1A460900C07A69 /* MemeEditorVC.m */; };
+		DF7CD4DA1D243FD5003249C4 /* MemeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7CD4D91D243FD5003249C4 /* MemeListCell.m */; };
 		DFF091E91D163C290082FC52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF091E81D163C290082FC52 /* main.m */; };
 		DFF091EC1D163C290082FC52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF091EB1D163C290082FC52 /* AppDelegate.m */; };
 		DFF091F21D163C290082FC52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF091F01D163C290082FC52 /* Main.storyboard */; };
@@ -24,6 +25,8 @@
 /* Begin PBXFileReference section */
 		DF1D49121D1A460900C07A69 /* MemeEditorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemeEditorVC.h; sourceTree = "<group>"; };
 		DF1D49131D1A460900C07A69 /* MemeEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemeEditorVC.m; sourceTree = "<group>"; };
+		DF7CD4D81D243FD5003249C4 /* MemeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemeListCell.h; sourceTree = "<group>"; };
+		DF7CD4D91D243FD5003249C4 /* MemeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemeListCell.m; sourceTree = "<group>"; };
 		DFF091E41D163C290082FC52 /* MemeMe.ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.ObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFF091E81D163C290082FC52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DFF091EA1D163C290082FC52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF7CD4D71D243FAF003249C4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DF7CD4D81D243FD5003249C4 /* MemeListCell.h */,
+				DF7CD4D91D243FD5003249C4 /* MemeListCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		DFF091DB1D163C290082FC52 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +87,7 @@
 		DFF091E61D163C290082FC52 /* MemeMe.ObjC */ = {
 			isa = PBXGroup;
 			children = (
+				DF7CD4D71D243FAF003249C4 /* Cells */,
 				DFF091FE1D16FB3F0082FC52 /* View Controllers */,
 				DFF091FF1D16FBAF0082FC52 /* Model */,
 				DFF091EA1D163C290082FC52 /* AppDelegate.h */,
@@ -203,6 +216,7 @@
 				DFF092081D17B73F0082FC52 /* MemeModel.xcdatamodeld in Sources */,
 				DFF092111D19045E0082FC52 /* CoreDataController.m in Sources */,
 				DFF091E91D163C290082FC52 /* main.m in Sources */,
+				DF7CD4DA1D243FD5003249C4 /* MemeListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

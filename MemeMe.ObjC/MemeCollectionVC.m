@@ -24,6 +24,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
+    [self initializeFetchedResutlsController];
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -71,7 +72,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [request setSortDescriptors:@[topTextSort]];
     
-    NSManagedObjectContext *moc =[[CoreDataController self] managedObjectContext];
+    NSManagedObjectContext *moc =[self sharedContext];
     
     [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:nil cacheName:nil]];
     [[self fetchedResultsController] setDelegate:self];
@@ -81,6 +82,11 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"Failed to initialize FetchedResultsController: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
+}
+
+-(NSManagedObjectContext *)sharedContext {
+    CoreDataController *sharedStore = [CoreDataController sharedStore];
+    return sharedStore.managedObjectContext;
 }
 
 #pragma mark <UICollectionViewDelegate>
