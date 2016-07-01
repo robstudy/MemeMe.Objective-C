@@ -7,17 +7,19 @@
 //
 
 #import "MemeCollectionVC.h"
+#import "Meme.h"
 #import "CoreDataController.h"
 
 @interface MemeCollectionVC ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 
 @end
 
 @implementation MemeCollectionVC
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"memeCollectionCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +30,12 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    
+    //Floy Layout
+    self.flowLayout.minimumInteritemSpacing = 0;
+    self.flowLayout.minimumLineSpacing = 0;
+    float dimension = self.view.frame.size.width/3.0;
+    self.flowLayout.itemSize = CGSizeMake(dimension, dimension);
     
     // Do any additional setup after loading the view.
 }
@@ -49,7 +57,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDataSource>
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     printf("Number of items in fetched results: %lu", [self.fetchedResultsController.fetchedObjects count]);
     return [self.fetchedResultsController.fetchedObjects count];
@@ -58,7 +65,12 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
+    Meme *memeObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    
+    UIImage *memeImage = [UIImage imageWithData:memeObject.imageWithText];
+    UIImageView *memeImageView = [[UIImageView alloc] initWithImage:memeImage];
+    
+    cell.backgroundView = memeImageView;
     
     return cell;
 }

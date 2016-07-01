@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolBar;
 
-
 @end
 
 @implementation MemeEditorVC
