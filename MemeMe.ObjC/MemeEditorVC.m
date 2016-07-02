@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolBar;
+@property (weak, nonatomic) IBOutlet UINavigationBar *topNavBar;
 
 @end
 
@@ -29,13 +30,15 @@
     [self setTextFields:_topTextField text:@"TOP"];
     [self setTextFields:_bottomTextField text:@"BOTTOM"];
     _cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    _memeImage.contentMode = UIViewContentModeScaleAspectFill;
+    _memeImage.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self subscribeToKeyboardNotification];
+    [self.view bringSubviewToFront:_topTextField];
+    [self.view bringSubviewToFront:_bottomTextField];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -169,27 +172,33 @@
     
     NSLog(@"Saved new meme %@",newMeme);
     
-    [[self navigationController] popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 -(UIImage *)generateMemeImage {
     //Hide Tool Bars when gernating image
+    _topNavBar.hidden = YES;
     _bottomToolBar.hidden = YES;
     
     //Remove First Responder From TextFields
     [_topTextField resignFirstResponder];
     [_bottomTextField resignFirstResponder];
     
-    _memeImage.contentMode = UIViewContentModeScaleAspectFill;
+    _memeImage.contentMode = UIViewContentModeScaleAspectFit;
     
     //Render View to an image
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [self.view drawViewHierarchyInRect:self.view.frame afterScreenUpdates:true];
+    UIGraphicsBeginImageContext(_memeImage.frame.size);
+    [self.view drawViewHierarchyInRect:_memeImage.frame afterScreenUpdates:NO];
     UIImage *memeImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     //Unhide ToolBars
+    _topNavBar.hidden = NO;
     _bottomToolBar.hidden = NO;
     
     return memeImage;

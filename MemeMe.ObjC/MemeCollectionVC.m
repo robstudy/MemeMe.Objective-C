@@ -40,6 +40,15 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self.fetchedResultsController performFetch:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionViewLayout invalidateLayout];
+        [self.collectionView reloadData];
+        [self.collectionView layoutIfNeeded];
+    });
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
