@@ -37,8 +37,8 @@
 {
     [super viewDidAppear:animated];
     [self subscribeToKeyboardNotification];
-    [self.view bringSubviewToFront:_topTextField];
-    [self.view bringSubviewToFront:_bottomTextField];
+    [self.view sendSubviewToBack:_memeImage];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -105,7 +105,6 @@
     textfield.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     textfield.textAlignment = NSTextAlignmentCenter;
 }
-
 
 - (IBAction)pickImageFromAlbum:(id)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -189,11 +188,11 @@
     [_topTextField resignFirstResponder];
     [_bottomTextField resignFirstResponder];
     
-    _memeImage.contentMode = UIViewContentModeScaleAspectFit;
-    
+    _memeImage.contentMode = UIViewContentModeScaleAspectFill;
+
     //Render View to an image
-    UIGraphicsBeginImageContext(_memeImage.frame.size);
-    [self.view drawViewHierarchyInRect:_memeImage.frame afterScreenUpdates:NO];
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [self.view drawViewHierarchyInRect:_memeImage.frame afterScreenUpdates:YES];
     UIImage *memeImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
