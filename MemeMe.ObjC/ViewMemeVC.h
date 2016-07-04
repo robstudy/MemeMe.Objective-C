@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "Meme.h"
 
-@interface ViewMemeVC : UIViewController
+@interface ViewMemeVC : UIViewController<NSFetchedResultsControllerDelegate>
+
+@property (weak, nonatomic) Meme *passedMeme;
 
 @end

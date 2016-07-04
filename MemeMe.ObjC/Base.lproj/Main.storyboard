@@ -149,6 +149,7 @@
                     <tabBarItem key="tabBarItem" title="Collection" id="rEA-OE-WE7"/>
                     <connections>
                         <outlet property="flowLayout" destination="a2F-r7-qrc" id="l89-UG-iWn"/>
+                        <segue destination="gC5-IP-VUH" kind="show" identifier="showMemeImage" id="LYU-Yc-OhX"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Czt-jW-lGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -266,7 +267,7 @@
             </objects>
             <point key="canvasLocation" x="1406" y="-59"/>
         </scene>
-        <!--View MemeVC-->
+        <!--MemeMe-->
         <scene sceneID="1pl-I5-aSu">
             <objects>
                 <viewController storyboardIdentifier="showMemeImage" id="gC5-IP-VUH" customClass="ViewMemeVC" sceneMemberID="viewController">
@@ -290,6 +291,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="qWG-cE-7XM" secondAttribute="trailing" constant="-20" id="z3C-zc-wan"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="MemeMe" id="Oqe-dc-IUv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QhR-4Q-ckY"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="memeImage" destination="qWG-cE-7XM" id="ynq-as-GcH"/>
                     </connections>
@@ -299,4 +303,7 @@
             <point key="canvasLocation" x="1406" y="662"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="LYU-Yc-OhX"/>
+    </inferredMetricsTieBreakers>
 </document>

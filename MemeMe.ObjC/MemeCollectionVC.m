@@ -8,6 +8,7 @@
 
 #import "MemeCollectionVC.h"
 #import "Meme.h"
+#import "ViewMemeVC.h"
 #import "CoreDataController.h"
 
 @interface MemeCollectionVC ()
@@ -36,8 +37,6 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
     self.flowLayout.minimumLineSpacing = 0;
     float dimension = self.view.frame.size.width/3.0;
     self.flowLayout.itemSize = CGSizeMake(dimension, dimension);
-    
-    // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -54,20 +53,23 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier]  isEqual: @"showMemeImage"]) {
+        ViewMemeVC *memeVC = (ViewMemeVC *)[segue destinationViewController];
+        memeVC.passedMeme = memeToPass;
+    }
 }
-*/
+
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    printf("Number of items in fetched results: %lu", [self.fetchedResultsController.fetchedObjects count]);
     return [self.fetchedResultsController.fetchedObjects count];
 }
 
@@ -112,34 +114,11 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
 
 #pragma mark <UICollectionViewDelegate>
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    memeToPass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"showMemeImage" sender:self];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 
 

@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "Meme.h"
 
 @interface MemeCollectionVC : UICollectionViewController<NSFetchedResultsControllerDelegate>
+
+{
+    Meme *memeToPass;
+}
 
 @end
