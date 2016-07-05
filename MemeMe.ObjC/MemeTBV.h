@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreData/CoreData.h"
+#import <CoreData/CoreData.h>
+#import "Meme.h"
 
 @interface MemeTBV : UITableViewController<NSFetchedResultsControllerDelegate>
+
+{
+    Meme *memeToPass;
+}
 
 @end
