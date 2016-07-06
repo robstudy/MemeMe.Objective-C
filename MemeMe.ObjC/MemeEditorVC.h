@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Meme.h"
 
-@interface MemeEditorVC : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate>
+@interface MemeEditorVC : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 {
     UIImage *fullMemeImage;
 }
 
-@property BOOL *calledFromViewMemeVC;
+@property BOOL calledFromViewMemeVC;
 @property (weak, nonatomic) Meme *passedMeme;
 
 -(void)setTextFields:(UITextField *)textfield

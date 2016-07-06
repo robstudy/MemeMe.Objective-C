@@ -29,8 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     if (_calledFromViewMemeVC) {
-        [self initializeFetchedResutlsController];
-        [self.fetchedResultsController performFetch:nil];
         [self setTextFields:_topTextField text:_passedMeme.topText];
         [self setTextFields:_bottomTextField text:_passedMeme.bottomText];
         _memeImage.image = [UIImage imageWithData:_passedMeme.image];
@@ -102,7 +100,6 @@
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
 }
-
 
 #pragma mark - TextFields
 
@@ -177,7 +174,6 @@
         _passedMeme.bottomText = _bottomTextField.text;
         _passedMeme.image = data2;
         _passedMeme.imageWithText = data;
-        [[self sharedContext] updatedObjects];
     } else {
     Meme *newMeme = [[Meme alloc] initWithContext:[self sharedContext]
                                       memeTopText:_topTextField.text
@@ -193,7 +189,6 @@
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 -(UIImage *)generateMemeImage {
     //Hide Tool Bars when gernating image
@@ -222,27 +217,6 @@
 -(NSManagedObjectContext *)sharedContext {
     CoreDataController *sharedStore = [CoreDataController sharedStore];
     return sharedStore.managedObjectContext;
-}
-
-#pragma mark - Fetched Results controller
-
--(void)initializeFetchedResutlsController
-{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Meme"];
-    NSSortDescriptor *topTextSort = [NSSortDescriptor sortDescriptorWithKey:@"topText" ascending:YES];
-    
-    [request setSortDescriptors:@[topTextSort]];
-    
-    NSManagedObjectContext *moc =[self sharedContext];
-    
-    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:nil cacheName:nil]];
-    [[self fetchedResultsController] setDelegate:self];
-    
-    NSError *error = nil;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        NSLog(@"Failed to initialize FetchedResultsController: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
 }
 
 @end

@@ -303,7 +303,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="memeImage" destination="qWG-cE-7XM" id="ynq-as-GcH"/>
-                        <segue destination="MSP-VP-y6Q" kind="show" identifier="callMemeEditor" id="5yt-Rq-5lh"/>
+                        <segue destination="MSP-VP-y6Q" kind="presentation" identifier="callMemeEditor" id="5yt-Rq-5lh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTd-lh-J2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
