@@ -295,10 +295,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MemeMe" id="Oqe-dc-IUv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QhR-4Q-ckY"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QhR-4Q-ckY">
+                            <connections>
+                                <action selector="editMeme:" destination="gC5-IP-VUH" id="929-Cj-EF2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="memeImage" destination="qWG-cE-7XM" id="ynq-as-GcH"/>
+                        <segue destination="MSP-VP-y6Q" kind="show" identifier="callMemeEditor" id="5yt-Rq-5lh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTd-lh-J2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,6 +312,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O7t-PQ-O46"/>
+        <segue reference="kfh-Q4-p7z"/>
+        <segue reference="5yt-Rq-5lh"/>
     </inferredMetricsTieBreakers>
 </document>

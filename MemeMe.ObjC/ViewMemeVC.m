@@ -7,6 +7,7 @@
 //
 
 #import "ViewMemeVC.h"
+#import "MemeEditorVC.h"
 #import "CoreDataController.h"
 
 @interface ViewMemeVC ()
@@ -30,6 +31,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)editMeme:(id)sender {
+    [self performSegueWithIdentifier:@"callMemeEditor" sender:self];
+}
+
 
 #pragma mark - Fetched Results controller
 
@@ -57,14 +63,16 @@
     return sharedStore.managedObjectContext;
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier]  isEqual: @"callMemeEditor"]) {
+        MemeEditorVC *memeEditorVC = (MemeEditorVC *)[segue destinationViewController];
+        *memeEditorVC.calledFromViewMemeVC = YES;
+        memeEditorVC.passedMeme = self.passedMeme;
+    }
 }
-*/
+
 
 @end

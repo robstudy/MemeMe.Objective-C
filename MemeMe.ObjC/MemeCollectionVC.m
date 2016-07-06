@@ -116,7 +116,4 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
     [self performSegueWithIdentifier:@"showMemeImage" sender:self];
 }
 
-
-
-
 @end

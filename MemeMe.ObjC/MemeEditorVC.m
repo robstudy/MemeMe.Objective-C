@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolBar;
 @property (weak, nonatomic) IBOutlet UINavigationBar *topNavBar;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -27,8 +28,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self setTextFields:_topTextField text:@"TOP"];
-    [self setTextFields:_bottomTextField text:@"BOTTOM"];
+    if (_calledFromViewMemeVC) {
+        [self initializeFetchedResutlsController];
+        [self.fetchedResultsController performFetch:nil];
+        [self setTextFields:_topTextField text:_passedMeme.topText];
+        [self setTextFields:_bottomTextField text:_passedMeme.bottomText];
+        _memeImage.image = [UIImage imageWithData:_passedMeme.image];
+    } else {
+        [self setTextFields:_topTextField text:@"TOP"];
+        [self setTextFields:_bottomTextField text:@"BOTTOM"];
+    }
     _cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     _memeImage.contentMode = UIViewContentModeScaleAspectFit;
 }
@@ -163,13 +172,20 @@
     NSData *data = UIImagePNGRepresentation(fullMemeImage);
     NSData *data2 = UIImagePNGRepresentation(_memeImage.image);
     
+    if (_calledFromViewMemeVC) {
+        _passedMeme.topText = _topTextField.text;
+        _passedMeme.bottomText = _bottomTextField.text;
+        _passedMeme.image = data2;
+        _passedMeme.imageWithText = data;
+        [[self sharedContext] updatedObjects];
+    } else {
     Meme *newMeme = [[Meme alloc] initWithContext:[self sharedContext]
                                       memeTopText:_topTextField.text
                                    memeBottomText:_bottomTextField.text
                                         memeImage:data2
                                 memeImageWithText:data];
-    
-    NSLog(@"Saved new meme %@",newMeme);
+        NSLog(@"Saved new meme %@",newMeme);
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -206,6 +222,27 @@
 -(NSManagedObjectContext *)sharedContext {
     CoreDataController *sharedStore = [CoreDataController sharedStore];
     return sharedStore.managedObjectContext;
+}
+
+#pragma mark - Fetched Results controller
+
+-(void)initializeFetchedResutlsController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Meme"];
+    NSSortDescriptor *topTextSort = [NSSortDescriptor sortDescriptorWithKey:@"topText" ascending:YES];
+    
+    [request setSortDescriptors:@[topTextSort]];
+    
+    NSManagedObjectContext *moc =[self sharedContext];
+    
+    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:nil cacheName:nil]];
+    [[self fetchedResultsController] setDelegate:self];
+    
+    NSError *error = nil;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Failed to initialize FetchedResultsController: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
 }
 
 @end
