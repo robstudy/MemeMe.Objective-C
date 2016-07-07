@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *topNavBar;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+@property CGFloat imageWidth;
+@property CGFloat imageHeight;
+
 @end
 
 @implementation MemeEditorVC
@@ -123,7 +126,10 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    _imageWidth = image.size.width;
+    _imageHeight = image.size.height;
     _memeImage.image = image;
+    fullMemeImage = image;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -191,25 +197,18 @@
 }
 
 -(UIImage *)generateMemeImage {
-    //Hide Tool Bars when gernating image
-    _topNavBar.hidden = YES;
-    _bottomToolBar.hidden = YES;
     
     //Remove First Responder From TextFields
     [_topTextField resignFirstResponder];
     [_bottomTextField resignFirstResponder];
     
-    _memeImage.contentMode = UIViewContentModeScaleAspectFill;
-
-    //Render View to an image
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [self.view drawViewHierarchyInRect:_memeImage.frame afterScreenUpdates:YES];
+    CGRect rectangle = CGRectMake(0.0, 0.0, _imageWidth , _imageHeight);
+    UIGraphicsBeginImageContext(rectangle.size);
+    [_memeImage.image drawInRect:rectangle];
+    [_topTextField drawViewHierarchyInRect:CGRectMake(0.0, 0.0, rectangle.size.width, rectangle.size.height / 7.0) afterScreenUpdates:YES];
+    [_bottomTextField drawViewHierarchyInRect:CGRectMake(0.0, rectangle.size.height -rectangle.size.height / 7.0, rectangle.size.width, rectangle.size.height / 7.0) afterScreenUpdates:YES];
     UIImage *memeImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    //Unhide ToolBars
-    _topNavBar.hidden = NO;
-    _bottomToolBar.hidden = NO;
     
     return memeImage;
 }

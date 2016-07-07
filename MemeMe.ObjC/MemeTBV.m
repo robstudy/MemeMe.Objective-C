@@ -79,6 +79,7 @@
     UIImage *imageWithData = [UIImage imageWithData:tableMeme.imageWithText];
     
     cell.imageView.image = imageWithData;
+    cell.imageView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.layer.frame.size.width / 3.0, cell.frame.size.height);
     cell.topText.text = tableMeme.topText;
     cell.bottomText.text = tableMeme.bottomText;
     
@@ -86,7 +87,6 @@
     
     return cell;
 }
-
 
 #pragma mark - Navigation
 
