@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *topTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bottomTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolBar;
 @property (weak, nonatomic) IBOutlet UINavigationBar *topNavBar;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -153,21 +152,7 @@
     }
 }
 
-#pragma mark - Share Image
-
-- (IBAction)shareImage:(id)sender {
-    fullMemeImage = [self generateMemeImage];
-    
-    NSArray *holdFullImage = [[NSArray alloc] initWithObjects:fullMemeImage, nil];
-    
-    UIActivityViewController *shareImageVC = [[UIActivityViewController alloc] initWithActivityItems:holdFullImage applicationActivities:nil];
-    
-    if ([shareImageVC respondsToSelector:@selector(popoverPresentationController)]) {
-        shareImageVC.popoverPresentationController.sourceView = _memeImage;
-    }
-    
-    [self presentViewController:shareImageVC animated:YES completion:nil];
-}
+#pragma mark - Save
 
 - (IBAction)save:(id)sender {
     

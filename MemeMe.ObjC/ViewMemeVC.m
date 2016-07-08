@@ -49,4 +49,20 @@
     }
 }
 
+#pragma mark - Share Image
+
+- (IBAction)shareImage:(id)sender {
+    UIImage *fullMemeImage = [UIImage imageWithData:self.passedMeme.imageWithText];
+    
+    NSArray *holdFullImage = [[NSArray alloc] initWithObjects:fullMemeImage, nil];
+    
+    UIActivityViewController *shareImageVC = [[UIActivityViewController alloc] initWithActivityItems:holdFullImage applicationActivities:nil];
+    
+    if ([shareImageVC respondsToSelector:@selector(popoverPresentationController)]) {
+        shareImageVC.popoverPresentationController.sourceView = _memeImage;
+    }
+    
+    [self presentViewController:shareImageVC animated:YES completion:nil];
+}
+
 @end

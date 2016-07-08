@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -278,11 +279,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MemeMe" id="Oqe-dc-IUv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QhR-4Q-ckY">
-                            <connections>
-                                <action selector="editMeme:" destination="gC5-IP-VUH" id="929-Cj-EF2"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="QhR-4Q-ckY">
+                                <connections>
+                                    <action selector="editMeme:" destination="gC5-IP-VUH" id="929-Cj-EF2"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="kRy-Hn-P00">
+                                <connections>
+                                    <action selector="shareImage:" destination="gC5-IP-VUH" id="1Ce-iN-Hfu"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="memeImage" destination="qWG-cE-7XM" id="ynq-as-GcH"/>
