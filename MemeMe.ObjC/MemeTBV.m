@@ -79,13 +79,18 @@
     UIImage *imageWithData = [UIImage imageWithData:tableMeme.imageWithText];
     
     cell.imageView.image = imageWithData;
-    cell.imageView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.layer.frame.size.width / 3.0, cell.frame.size.height);
-    cell.topText.text = tableMeme.topText;
-    cell.bottomText.text = tableMeme.bottomText;
-    
-    // Configure the cell...
+    [self setTextViews:cell.topText text:tableMeme.topText];
+    [self setTextViews:cell.bottomText text:tableMeme.bottomText];
     
     return cell;
+}
+
+-(void)setTextViews:(UITextView *)textview text:(NSString *)setText {
+    NSAttributedString *textAttributes = [[NSAttributedString alloc]initWithString:setText attributes: @{  NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:30.0], NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor], NSStrokeWidthAttributeName: [NSNumber numberWithFloat:-3.0]}];
+    textview.attributedText = textAttributes;
+    textview.textAlignment = NSTextAlignmentCenter;
+    textview.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    textview.textAlignment = NSTextAlignmentCenter;
 }
 
 #pragma mark - Navigation
