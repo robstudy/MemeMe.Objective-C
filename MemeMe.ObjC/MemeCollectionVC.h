@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Meme.h"
 
-@interface MemeCollectionVC : UICollectionViewController<NSFetchedResultsControllerDelegate>
+@interface MemeCollectionVC : UICollectionViewController<NSFetchedResultsControllerDelegate, UINavigationControllerDelegate>
 
 {
     Meme *memeToPass;

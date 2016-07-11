@@ -24,11 +24,8 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
     [self initializeFetchedResutlsController];
-    
+    self.navigationController.toolbar.hidden = YES;
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
@@ -40,6 +37,8 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [[CoreDataController sharedStore] save];
+    self.navigationController.toolbarHidden= YES;
     [self.fetchedResultsController performFetch:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionViewLayout invalidateLayout];
@@ -53,10 +52,8 @@ static NSString * const reuseIdentifier = @"memeCollectionCell";
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier]  isEqual: @"showMemeImage"]) {
         ViewMemeVC *memeVC = (ViewMemeVC *)[segue destinationViewController];

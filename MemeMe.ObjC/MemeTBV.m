@@ -27,7 +27,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.navigationController.delegate = self;
+    self.navigationController.toolbarHidden= YES;
+    [[CoreDataController sharedStore] save];
     [[self fetchedResultsController] performFetch:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
         [[self tableView] reloadData];

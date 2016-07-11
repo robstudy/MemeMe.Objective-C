@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.delegate = self;
     if (_calledFromViewMemeVC) {
         [self setTextFields:_topTextField text:_passedMeme.topText];
         [self setTextFields:_bottomTextField text:_passedMeme.bottomText];
@@ -47,7 +48,7 @@
     [super viewDidAppear:animated];
     [self subscribeToKeyboardNotification];
     [self.view sendSubviewToBack:_memeImage];
-
+    self.navigationController.toolbarHidden= YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated

@@ -4,13 +4,12 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="T66-bd-Voi">
             <objects>
-                <navigationController id="bVc-0R-83h" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="bVc-0R-83h" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D5N-tM-i4Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -18,6 +17,10 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1dz-Dd-TYV">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="AFv-aN-Mfv" kind="relationship" relationship="rootViewController" id="tBt-5Y-JwE"/>
                     </connections>
@@ -38,6 +41,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="OMN-nk-7Mp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -310,33 +314,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qWG-cE-7XM">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.97254901959999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ydJ-us-sLX" firstAttribute="top" secondItem="qWG-cE-7XM" secondAttribute="bottom" id="8VH-2R-Pwn"/>
+                            <constraint firstItem="ydJ-us-sLX" firstAttribute="top" secondItem="qWG-cE-7XM" secondAttribute="bottom" id="YFX-5a-QcR"/>
                             <constraint firstItem="qWG-cE-7XM" firstAttribute="top" secondItem="fra-vb-qEh" secondAttribute="bottom" id="t3V-4v-xPq"/>
                             <constraint firstItem="qWG-cE-7XM" firstAttribute="leading" secondItem="xfL-1C-iAE" secondAttribute="leadingMargin" constant="-20" id="wXX-CV-Zhc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qWG-cE-7XM" secondAttribute="trailing" constant="-20" id="z3C-zc-wan"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ddL-m3-rBP"/>
+                        <barButtonItem title="Share" id="XrC-8u-xfO">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="shareImage:" destination="gC5-IP-VUH" id="CBO-Zd-zsb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2Fs-Gr-Viu"/>
+                        <barButtonItem title="Delete" id="lhK-5u-tfj">
+                            <color key="tintColor" red="0.90980392160000001" green="0.97254901959999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2fq-rv-IrA"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="MemeMe" id="Oqe-dc-IUv">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="edit" id="QhR-4Q-ckY">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="editMeme:" destination="gC5-IP-VUH" id="929-Cj-EF2"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="action" id="kRy-Hn-P00">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="shareImage:" destination="gC5-IP-VUH" id="1Ce-iN-Hfu"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QhR-4Q-ckY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="editMeme:" destination="gC5-IP-VUH" id="929-Cj-EF2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="memeImage" destination="qWG-cE-7XM" id="ynq-as-GcH"/>
                         <segue destination="MSP-VP-y6Q" kind="presentation" identifier="callMemeEditor" id="5yt-Rq-5lh"/>
@@ -344,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTd-lh-J2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="646" y="762"/>
+            <point key="canvasLocation" x="624" y="784"/>
         </scene>
     </scenes>
     <resources>
@@ -353,6 +364,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5yt-Rq-5lh"/>
-        <segue reference="O7t-PQ-O46"/>
+        <segue reference="kfh-Q4-p7z"/>
     </inferredMetricsTieBreakers>
 </document>

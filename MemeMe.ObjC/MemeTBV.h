@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Meme.h"
 
-@interface MemeTBV : UITableViewController<NSFetchedResultsControllerDelegate>
+@interface MemeTBV : UITableViewController<NSFetchedResultsControllerDelegate, UINavigationControllerDelegate>
 
 {
     Meme *memeToPass;
