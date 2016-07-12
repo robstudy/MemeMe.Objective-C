@@ -67,4 +67,27 @@
     [self presentViewController:shareImageVC animated:YES completion:nil];
 }
 
+-(IBAction)delete:(id)sender {
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.sharedContext deleteObject:_passedMeme];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        return;
+    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *confirmDelete = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Would you like to delete meme?" preferredStyle:UIAlertControllerStyleAlert];
+        [confirmDelete addAction:confirm];
+        [confirmDelete addAction:cancel];
+        [self presentViewController:confirmDelete animated:YES completion:nil];
+    });
+}
+
+-(NSManagedObjectContext *)sharedContext {
+    CoreDataController *sharedStore = [CoreDataController sharedStore];
+    return sharedStore.managedObjectContext;
+}
+
 @end
