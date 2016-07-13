@@ -51,7 +51,7 @@
     }
 }
 
-#pragma mark - Share Image
+#pragma mark - IBActions
 
 - (IBAction)shareImage:(id)sender {
     UIImage *fullMemeImage = [UIImage imageWithData:self.passedMeme.imageWithText];

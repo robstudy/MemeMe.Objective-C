@@ -29,11 +29,7 @@
     [super viewWillAppear:animated];
     self.navigationController.delegate = self;
     self.navigationController.toolbarHidden= YES;
-    [[CoreDataController sharedStore] save];
-    [[self fetchedResultsController] performFetch:nil];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[self tableView] reloadData];
-    });
+    [self refreshAndSave];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +68,12 @@
     return sharedStore.managedObjectContext;
 }
 
+#pragma mark - TableView Delegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    memeToPass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"showMemeImage" sender:self];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Meme *tableMeme = [[self fetchedResultsController] objectAtIndexPath:indexPath];
@@ -87,12 +89,29 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Meme *meme = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.sharedContext deleteObject:meme];
+        [self refreshAndSave];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    };
+}
+
 -(void)setTextViews:(UITextView *)textview text:(NSString *)setText {
     NSAttributedString *textAttributes = [[NSAttributedString alloc]initWithString:setText attributes: @{  NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:30.0], NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor], NSStrokeWidthAttributeName: [NSNumber numberWithFloat:-3.0]}];
     textview.attributedText = textAttributes;
     textview.textAlignment = NSTextAlignmentCenter;
     textview.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     textview.textAlignment = NSTextAlignmentCenter;
+}
+
+-(void)refreshAndSave {
+    [[CoreDataController sharedStore] save];
+    [[self fetchedResultsController] performFetch:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[self tableView] reloadData];
+    });
 }
 
 #pragma mark - Navigation
@@ -103,13 +122,6 @@
         ViewMemeVC *memeVC = (ViewMemeVC *)[segue destinationViewController];
         memeVC.passedMeme = memeToPass;
     }
-}
-
-#pragma mark - TableView Delegate
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    memeToPass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"showMemeImage" sender:self];
 }
 
 @end
