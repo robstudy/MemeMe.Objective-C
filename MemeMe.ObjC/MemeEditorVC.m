@@ -115,14 +115,21 @@
     textfield.textAlignment = NSTextAlignmentCenter;
 }
 
+#pragma mark - ImagePicker and Delegate Controls
+
 - (IBAction)pickImageFromAlbum:(id)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.navigationBar.barTintColor = [UIColor colorWithRed:51.0f/255.0f
+                                                             green:153.0f/255.0f
+                                                              blue:204.0f/255.0f
+                                                             alpha:1.0f];
+    imagePicker.navigationBar.tintColor = [UIColor whiteColor];
+
+    
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
-
-#pragma mark - ImagePicker Delegate Controls
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
@@ -156,7 +163,6 @@
 #pragma mark - Save
 
 - (IBAction)save:(id)sender {
-    
     fullMemeImage = [self generateMemeImage];
     NSData *data = UIImagePNGRepresentation(fullMemeImage);
     NSData *data2 = UIImagePNGRepresentation(_memeImage.image);
@@ -183,7 +189,6 @@
 }
 
 -(UIImage *)generateMemeImage {
-    
     //Remove First Responder From TextFields
     [_topTextField resignFirstResponder];
     [_bottomTextField resignFirstResponder];

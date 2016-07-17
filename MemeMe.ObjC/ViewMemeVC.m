@@ -32,8 +32,10 @@
     _memeImage.image = [UIImage imageWithData:_passedMeme.imageWithText];
     self.navigationController.delegate = self;
     self.navigationController.toolbarHidden= NO;
-    UIColor *bgcolor = [UIColor colorWithRed:51.0 green:153.0 blue:204.0 alpha:1.0];
-    self.navigationController.toolbar.barTintColor = bgcolor;
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:51.0f/255.0f
+                                                                     green:153.0f/255.0f
+                                                                      blue:204.0f/255.0f
+                                                                     alpha:1.0f];;
 }
 
 - (IBAction)editMeme:(id)sender {

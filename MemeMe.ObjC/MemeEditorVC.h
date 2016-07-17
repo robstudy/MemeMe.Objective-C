@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Meme.h"
 
-@interface MemeEditorVC : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MemeEditorVC : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 {
     UIImage *fullMemeImage;
